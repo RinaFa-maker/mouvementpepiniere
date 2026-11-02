@@ -1,5 +1,5 @@
-const V = 'pep-v2';   // changer ce numéro à chaque mise à jour du site
-const FILES = ['./', 'index.html', 'style.css', 'app.js', 'db.js', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png'];
+const V = 'pep-v6';   // changer ce numéro à chaque mise à jour du site
+const FILES = ['./', 'index.html', 'manifest.json', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => e.waitUntil(caches.open(V).then(c => c.addAll(FILES)).then(() => self.skipWaiting())));
 self.addEventListener('activate', e => e.waitUntil(
