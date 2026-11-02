@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" class="boot">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -7,17 +7,134 @@
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
 <title>Pépinière</title>
-<link rel="stylesheet" href="style.css">
+<style>
+:root{--bg:#f3f6f2;--surface:#fff;--ink:#14241a;--muted:#5d6e63;--line:#e0e7de;--brand:#14452f;--brand2:#237a4f;--accent:#237a4f;
+--e:#237a4f;--s:#2563a8;--t:#b7791f;--m:#b4412f;--amber:#fdf2cf;--amber-ink:#4a3700;--shadow:0 1px 2px rgba(16,40,26,.06),0 4px 14px rgba(16,40,26,.05);--r:14px}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1510;--surface:#16211a;--ink:#e8f0ea;--muted:#9aada0;--line:#26352b;--brand:#0f3323;--brand2:#1b5c3d;--accent:#5fc58a;
+--e:#4cb97f;--s:#6aa5e8;--t:#e0a840;--m:#e07a66;--amber:#3a3010;--amber-ink:#f5dc8a;--shadow:0 1px 2px rgba(0,0,0,.4)}}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;
+ padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+.brand{display:flex;align-items:center;gap:10px;min-width:0}
+.logo{flex:none;width:38px;height:38px;border-radius:11px;background:#ffffff22;display:grid;place-items:center}
+.logo svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+h1{font-size:1.05rem;line-height:1.15;margin:0;font-weight:700;letter-spacing:.2px}
+.sub{font-size:.72rem;opacity:.8}
+.status{display:flex;gap:6px;flex:none}
+.pill{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:99px;padding:5px 11px;font:600 .75rem inherit;background:#ffffff26;color:#fff;white-space:nowrap}
+#net::before{content:"";width:8px;height:8px;border-radius:50%;background:#7ee2a4}
+.pill.off::before{background:#ffb4a8}.pill.off{background:#8f2b1d}.pill.pend{background:#b7791f}
+main{max-width:680px;margin:auto;padding:18px 16px 110px}
+.page{font-size:1.35rem;margin:2px 0 14px;font-weight:700}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 8px;font-weight:700}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px 16px 18px;box-shadow:var(--shadow)}
+.panel h2{margin-top:14px}
+label{display:block;font-weight:600;font-size:.82rem;color:var(--muted);margin:14px 0}
+input,select,textarea{display:block;width:100%;margin-top:6px;min-height:48px;padding:11px 13px;font:inherit;font-size:1rem;color:var(--ink);
+ background:var(--bg);border:1.5px solid var(--line);border-radius:11px;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:76px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent);background:var(--surface)}
+button:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:2px}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 4px}
+.seg button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;font:700 1rem inherit;color:var(--c);
+ background:var(--surface);border:2px solid color-mix(in srgb,var(--c) 40%,var(--line));border-radius:12px;transition:background .15s,color .15s}
+.seg button::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
+.seg button.on{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--c) 40%,transparent)}
+.seg button.on::before{background:#fff}
+.l-e{--c:var(--e)}.l-s{--c:var(--s)}.l-t{--c:var(--t)}.l-m{--c:var(--m)}
+.primary{width:100%;min-height:52px;margin-top:10px;font:700 1.02rem inherit;color:#fff;border:0;border-radius:12px;
+ background:linear-gradient(135deg,var(--brand2),var(--brand));box-shadow:0 4px 12px rgba(20,69,47,.3);transition:transform .1s}
+.primary:active{transform:scale(.985)}.primary:disabled{opacity:.5}
+.hint{margin:6px 0;padding:10px 13px;border-radius:10px;font-size:.88rem;background:var(--amber);color:var(--amber-ink);border-left:4px solid var(--t)}
+.muted{color:var(--muted);font-size:.85rem}
+.kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)}
+.kpi span{display:block;font-size:.74rem;color:var(--muted);font-weight:600}
+.kpi b{font-size:1.6rem;line-height:1.2}.kpi.alert b{color:var(--m)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin:9px 0;box-shadow:var(--shadow)}
+.card .row,.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.low{color:var(--m);font-weight:700;font-size:.85rem}
+.tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.75rem;font-weight:700;color:#fff;background:var(--c,#777);white-space:nowrap}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
+tr:last-child td{border-bottom:0}
+tr.first td{background:var(--amber);color:var(--amber-ink);font-weight:700}
+tr.first td:first-child{box-shadow:inset 4px 0 var(--t)}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;background:var(--surface);border-top:1px solid var(--line);
+ box-shadow:0 -4px 16px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px 8px;border:0;background:none;color:var(--muted);font:600 .7rem inherit;position:relative}
+nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+nav button.on{color:var(--accent)}
+nav button.on::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translate(-50%,8px);z-index:9;background:#16211a;color:#fff;
+ padding:11px 18px;border-radius:12px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+#toast.show{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ===== Animations et finitions ===== */
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes fillbar{to{width:100%}}
+@keyframes splashOut{to{opacity:0;visibility:hidden;transform:scale(1.05)}}
+@keyframes headerIn{from{transform:translateY(-100%)}to{transform:none}}
+@keyframes navIn{from{transform:translateY(100%)}to{transform:none}}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(126,226,164,.7)}50%{box-shadow:0 0 0 6px rgba(126,226,164,0)}}
+@keyframes done{0%{transform:scale(1)}40%{transform:scale(1.03);box-shadow:0 0 0 9px rgba(35,122,79,.28)}100%{transform:scale(1)}}
+
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
+ background:radial-gradient(circle at 50% 38%,var(--brand2),var(--brand) 72%);color:#fff;pointer-events:none;
+ animation:splashOut .5s ease 1.15s forwards}
+.sp-logo{width:96px;height:96px;border-radius:28px;background:#ffffff1f;display:grid;place-items:center;
+ box-shadow:0 10px 40px rgba(0,0,0,.25);animation:pop .6s cubic-bezier(.2,1.3,.4,1) both}
+.sp-logo svg{width:56px;height:56px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.sp-logo path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .9s ease .3s forwards}
+.sp-title{font-size:1.7rem;font-weight:800;letter-spacing:.5px;margin-top:18px;animation:rise .6s ease .55s both}
+.sp-sub{font-size:.85rem;color:#ffffffcc;animation:rise .6s ease .7s both}
+.sp-bar{width:120px;height:3px;border-radius:3px;background:#ffffff33;margin-top:26px;overflow:hidden}
+.sp-bar i{display:block;height:100%;width:0;background:#fff;animation:fillbar 1.05s ease .1s forwards}
+
+header{animation:headerIn .6s cubic-bezier(.2,.8,.2,1) .95s both}
+nav{animation:navIn .6s cubic-bezier(.2,.8,.2,1) .95s both}
+#net::before{animation:pulse 2.2s infinite}.pill.off::before{animation:none}
+
+main>section:not([hidden]){animation:pageIn .4s cubic-bezier(.2,.8,.2,1) both}
+html.boot main>section:not([hidden]){animation-delay:.95s}
+.enter .card,.enter .kpi,.enter .scroll,.enter .panel{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*55ms)}
+html.boot .enter .card,html.boot .enter .kpi,html.boot .enter .scroll,html.boot .enter .panel{animation-delay:calc(.95s + var(--i,0)*55ms)}
+.card:nth-child(1),.kpi:nth-child(1){--i:1}.card:nth-child(2),.kpi:nth-child(2){--i:2}.card:nth-child(3),.kpi:nth-child(3){--i:3}
+.card:nth-child(4),.kpi:nth-child(4){--i:4}.card:nth-child(5){--i:5}.card:nth-child(6){--i:6}.card:nth-child(7){--i:7}.card:nth-child(n+8){--i:8}
+
+.kpi b{font-variant-numeric:tabular-nums}
+.card,.kpi,.seg button,.primary,nav button{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease}
+@media(hover:hover){.card:hover,.kpi:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,40,26,.12)}}
+.seg button:active,nav button:active{transform:scale(.96)}
+.primary.done{animation:done .6s ease}
+header::after{content:"";position:absolute;inset:0;pointer-events:none;
+ background:radial-gradient(120px 60px at 85% 0,rgba(255,255,255,.18),transparent 70%)}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}}
+</style>
 </head>
 <body>
+<div id="splash" aria-hidden="true">
+  <div class="sp-logo"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div>
+  <div class="sp-title">Pépinière</div><div class="sp-sub">Suivi agroforesterie</div>
+  <div class="sp-bar"><i></i></div>
+</div>
 <header>
-  <h1>Pépinière agroforesterie</h1>
+  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div>
+  <div><h1>Pépinière</h1><div class="sub">Suivi agroforesterie</div></div></div>
   <div class="status"><span id="net" class="pill">En ligne</span><button id="sync" class="pill" type="button">0 en attente</button></div>
 </header>
 
 <main>
 <section id="t-saisie">
-  <form id="f" autocomplete="off">
+  <h2 class="page">Nouveau mouvement</h2>
+  <form id="f" class="panel" autocomplete="off">
     <div class="seg" id="lib">
       <button type="button" data-l="Entrée" class="l-e">Entrée</button>
       <button type="button" data-l="Sortie" class="l-s">Sortie</button>
@@ -37,7 +154,7 @@
 </section>
 
 <section id="t-semis" hidden>
-  <form id="fx" autocomplete="off">
+  <form id="fx" class="panel" autocomplete="off">
     <h2>Nouveau semis</h2>
     <label>Date du semis<input type="date" id="sx-date" required></label>
     <label>Espèce<select id="sx-espece" required></select></label>
@@ -56,34 +173,283 @@
 </section>
 
 <section id="t-stock" hidden>
+  <h2 class="page">Stock</h2>
+  <div class="kpis" id="kpi"></div>
   <label>Espèce<select id="fs"></select></label>
   <div id="totaux"></div>
-  <h2>Ordre de sortie (plus anciens d'abord)</h2>
+  <h2>Ordre de sortie · plus anciens d'abord</h2>
   <div class="scroll"><table id="lots"></table></div>
 </section>
 
 <section id="t-histo" hidden>
+  <h2 class="page">Historique</h2>
   <label>Rechercher<input type="search" id="q" placeholder="espèce, planche, responsable…"></label>
   <div id="histo"></div>
 </section>
 
 <section id="t-reglages" hidden>
-  <label>URL de l'application web Apps Script<input id="url" type="url" placeholder="https://script.google.com/macros/s/AKfycbyZYIiPN1NsNGfWGvM9uTmRR6zyMsBAJ8IqDVGB3Fa0bHPjrlcleJjb_iEJoq8QNezkkg/exec"></label>
-  <label>Token d'accès<input id="token" type="password"></label>
+  <h2 class="page">Réglages</h2>
+  <label>URL de l'application web Apps Script (inutile si déjà écrite dans index.html)<input id="url" type="url" placeholder="https://script.google.com/macros/s/…/exec"></label>
   <button id="save" class="primary" type="button">Enregistrer et actualiser</button>
   <p class="muted" id="last"></p>
 </section>
 </main>
 
 <nav>
-  <button data-t="saisie" class="on">Saisie</button>
-  <button data-t="semis">Semis</button>
-  <button data-t="stock">Stock</button>
-  <button data-t="histo">Historique</button>
-  <button data-t="reglages">Réglages</button>
+  <button data-t="saisie" class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span>Saisie</span></button>
+  <button data-t="semis"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg><span>Semis</span></button>
+  <button data-t="stock"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg><span>Stock</span></button>
+  <button data-t="histo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Historique</span></button>
+  <button data-t="reglages"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>Réglages</span></button>
 </nav>
 <div id="toast" role="status"></div>
-<script src="db.js"></script>
-<script src="app.js"></script>
+<script>
+/* ====== CONFIGURATION : collez ici l'URL de l'application web Apps Script (qui finit par /exec) ====== */
+const API_URL = '';
+
+/* IndexedDB : kv (réglages, listes en cache) + queue (saisies en attente) */
+const DB = (() => {
+  const open = () => new Promise((ok, ko) => {
+    const r = indexedDB.open('pepiniere', 1);
+    r.onupgradeneeded = () => { r.result.createObjectStore('kv'); r.result.createObjectStore('queue', { keyPath: 'id' }); };
+    r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error);
+  });
+  const tx = async (st, mode, fn) => {
+    const d = await open();
+    return new Promise((ok, ko) => {
+      const t = d.transaction(st, mode), rq = fn(t.objectStore(st));
+      t.oncomplete = () => ok(rq && rq.result); t.onerror = () => ko(t.error);
+    });
+  };
+  return {
+    get: k => tx('kv', 'readonly', s => s.get(k)),
+    set: (k, v) => tx('kv', 'readwrite', s => s.put(v, k)),
+    all: () => tx('queue', 'readonly', s => s.getAll()),
+    put: o => tx('queue', 'readwrite', s => s.put(o)),
+    del: id => tx('queue', 'readwrite', s => s.delete(id))
+  };
+})();
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const COL = { 'Entrée': 'var(--e)', 'Sortie': 'var(--s)', 'Transfert': 'var(--t)', 'Mortalité': 'var(--m)' };
+const S = { cfg: { url: API_URL }, data: { especes: [], sites: [], responsables: [], stock: [], mouvements: [], semis: [] },
+  q: [], lib: 'Entrée', id: crypto.randomUUID(), sid: crypto.randomUUID(), busy: false };
+
+const localDate = () => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+const age = d => Math.floor((Date.now() - new Date(d + 'T00:00:00')) / 864e5);
+const planches = () => S.data.sites.filter(s => String(s.Type || '').trim().toLowerCase().indexOf('planche') === 0).map(s => s.Nom);
+const externes = () => S.data.sites.filter(s => String(s.Type || '').trim().toLowerCase().indexOf('externe') === 0 && s.Nom !== 'Extérieur').map(s => s.Nom);
+const fill = (el, list, keep) => { const v = keep ?? el.value;
+  el.innerHTML = list.map(x => `<option>${esc(x)}</option>`).join(''); if (list.includes(v)) el.value = v; };
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3200); }
+
+/* ---------- Saisie ---------- */
+function renderForm() {
+  document.querySelectorAll('#lib button').forEach(b => b.classList.toggle('on', b.dataset.l === S.lib));
+  const L = S.lib;
+  $('#r-orig').hidden = L === 'Entrée';
+  $('#r-dest').hidden = L === 'Mortalité';
+  $('#l-dest').textContent = L === 'Sortie' ? 'Destination' : 'Planche de destination';
+  fill($('#espece'), S.data.especes.map(e => e.Nom_commun));
+  fill($('#orig'), planches());
+  fill($('#dest'), L === 'Sortie' ? externes() : planches());
+  fill($('#resp'), S.data.responsables.map(r => r.Nom));
+  hint();
+}
+function lotsOf(esp) { return S.data.stock.filter(l => l.Espece === esp).sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree)); }
+function hint(auto) {
+  const h = $('#hint'), esp = $('#espece').value;
+  if (S.lib === 'Entrée') { h.hidden = false; h.textContent = 'Entrée hors semis (achat, don…). Les semis se saisissent dans l\'onglet Semis.'; return; }
+  if (!esp) { h.hidden = true; return; }
+  const lots = lotsOf(esp);
+  h.hidden = false;
+  if (!lots.length) { h.textContent = 'Aucun stock connu pour cette espèce.'; return; }
+  const o = lots[0];
+  if (auto) $('#orig').value = o.Site;                 // propose la planche la plus ancienne
+  const here = lots.filter(l => l.Site === $('#orig').value).reduce((s, l) => s + l.Quantite, 0);
+  h.innerHTML = `Stock sur cette planche : <b>${here}</b><br>À sortir en premier : <b>${esc(o.Site)}</b> (${o.Quantite} plants, entrés le ${o.Date_Entree}, ${age(o.Date_Entree)} j)`;
+}
+async function submit(ev) {
+  ev.preventDefault();
+  const btn = $('#ok'); if (btn.disabled) return; btn.disabled = true;
+  try {
+    const L = S.lib, q = parseInt($('#qte').value, 10);
+    if (!(q > 0)) return toast('Quantité invalide');
+    if (L === 'Transfert' && $('#orig').value === $('#dest').value) return toast('Origine et destination identiques');
+    const item = { id: S.id, Date: $('#date').value, Libelle: L, Espece: $('#espece').value, Quantite: q,
+      Site_Origine: L === 'Entrée' ? 'Extérieur' : $('#orig').value,
+      Site_Destination: L === 'Mortalité' ? '' : $('#dest').value,
+      Responsable: $('#resp').value, Observation: $('#obs').value.trim(),
+      Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' };
+    await DB.put(item);                                   // même ID => impossible de créer 2 fois la même saisie
+    S.id = crypto.randomUUID();
+    $('#qte').value = ''; $('#obs').value = '';
+    await loadQ(); toast(navigator.onLine ? 'Enregistré' : 'Enregistré hors ligne'); flash($('#ok'));
+    sync();
+  } finally { btn.disabled = false; }
+}
+
+/* ---------- Synchronisation ---------- */
+async function loadQ() { S.q = await DB.all(); const n = S.q.filter(x => x.status !== 'error').length, e = S.q.length - n;
+  const b = $('#sync'); b.textContent = n + ' en attente' + (e ? ` · ${e} erreur` : ''); b.classList.toggle('pend', n > 0 || e > 0); renderHisto(); renderSemis(); }
+async function sync() {
+  if (S.busy || !navigator.onLine || !S.cfg.url) return;
+  const items = S.q.filter(x => x.status !== 'error'); if (!items.length) return;
+  S.busy = true;
+  try {
+    const r = await fetch(S.cfg.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action: 'add', items: items.map(({ status, msg, ...o }) => o) }) });
+    const j = await r.json(); if (j.error) throw new Error(j.error);
+    let bad = 0;
+    for (const res of j.results) {
+      if (res.status === 'ok' || res.status === 'duplicate') await DB.del(res.id);
+      else { bad++; const it = S.q.find(x => x.id === res.id); it.status = 'error'; it.msg = res.msg; await DB.put(it); }
+    }
+    toast(bad ? bad + ' saisie(s) refusée(s) : voir Historique' : 'Synchronisé'); await refresh(true);
+  } catch (e) { toast('Synchronisation impossible : ' + e.message); }
+  finally { S.busy = false; await loadQ(); }
+}
+async function refresh(quiet) {
+  if (!S.cfg.url || !navigator.onLine) return;
+  try {
+    const r = await fetch(`${S.cfg.url}?action=bootstrap`);
+    const j = await r.json(); if (j.error) throw new Error(j.error);
+    S.data = j; await DB.set('data', j); await DB.set('last', new Date().toLocaleString('fr-FR'));
+    render(); if (!quiet) toast('Listes actualisées');
+  } catch (e) { toast('Actualisation impossible : ' + e.message); }
+}
+
+/* ---------- Affichages ---------- */
+function renderStock() {
+  fill($('#fs'), [''].concat(S.data.especes.map(e => e.Nom_commun)));
+  const f = $('#fs').value, lots = S.data.stock.filter(l => !f || l.Espece === f)
+    .sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree));
+  const tot = {}; S.data.stock.forEach(l => tot[l.Espece] = (tot[l.Espece] || 0) + l.Quantite);
+  const total = Object.values(tot).reduce((a, b) => a + b, 0);
+  const bas = S.data.especes.filter(e => e.Seuil_Alerte && (tot[e.Nom_commun] || 0) <= e.Seuil_Alerte).length;
+  const vieux = S.data.stock.length ? Math.max(...S.data.stock.map(l => age(l.Date_Entree))) : 0;
+  $('#kpi').innerHTML = `<div class="kpi"><span>Plants en stock</span><b data-n="${total}">${total}</b></div>
+    <div class="kpi"><span>Espèces en stock</span><b data-n="${Object.keys(tot).length}">${Object.keys(tot).length}</b></div>
+    <div class="kpi ${bas ? 'alert' : ''}"><span>Espèces à stock bas</span><b data-n="${bas}">${bas}</b></div>
+    <div class="kpi"><span>Lot le plus ancien</span><b data-n="${vieux}" data-s=" j">${vieux} j</b></div>`;
+  countUp();
+  $('#totaux').innerHTML = S.data.especes.filter(e => !f || e.Nom_commun === f).map(e => {
+    const n = tot[e.Nom_commun] || 0, low = e.Seuil_Alerte && n <= e.Seuil_Alerte;
+    return `<div class="card row"><span>${esc(e.Nom_commun)}</span><span class="${low ? 'low' : ''}">${n}${low ? ' · stock bas' : ''}</span></div>`;
+  }).join('');
+  const seen = new Set();
+  $('#lots').innerHTML = '<tr><th>Espèce</th><th>Planche</th><th>Plants</th><th>Entrée</th><th>Âge</th></tr>' +
+    (lots.map(l => { const first = !seen.has(l.Espece); seen.add(l.Espece);
+      return `<tr class="${first ? 'first' : ''}"><td>${esc(l.Espece)}</td><td>${esc(l.Site)}</td><td>${l.Quantite}</td><td>${l.Date_Entree}</td><td>${age(l.Date_Entree)} j</td></tr>`; }).join('')
+      || '<tr><td colspan="5">Aucun stock. Enregistrez une entrée.</td></tr>');
+}
+function renderHisto() {
+  const q = ($('#q')?.value || '').toLowerCase();
+  const pend = S.q.map(x => ({ ...x, _p: x.status === 'error' ? 'refusée : ' + x.msg : 'en attente' }));
+  const view = m => {
+    if (m.kind === 'semis') return { t: 'Semis', c: 'var(--e)', n: m.Quantite, a: m.Espece, b: `${m.Planche} · ${m.Responsable}` };
+    if (m.kind === 'levee') { const s = [...S.q, ...S.data.semis.map(x => ({ id: x.ID_Semis, Espece: x.Espece }))].find(x => x.id === m.semis_id);
+      return { t: 'Levée', c: 'var(--e)', n: m.Quantite, a: s ? s.Espece : 'Semis', b: 'levée de semis' }; }
+    return { t: m.Libelle, c: COL[m.Libelle], n: m.Quantite, a: m.Espece,
+      b: `${m.Site_Origine}${m.Site_Destination ? ' → ' + m.Site_Destination : ''} · ${m.Responsable}${m.Observation ? ' · ' + m.Observation : ''}` };
+  };
+  const all = pend.concat(S.data.mouvements).filter(m => !q || JSON.stringify(m).toLowerCase().includes(q)).slice(0, 150);
+  $('#histo').innerHTML = all.map(m => { const v = view(m);
+    return `<div class="card" style="border-left:4px solid ${v.c}"><div class="row"><b>${esc(m.Date)} · ${esc(v.a)}</b><span class="tag" style="--c:${v.c}">${esc(v.t)} ${esc(v.n)}</span></div>
+    <div class="muted">${esc(v.b)}</div>
+    ${m._p ? `<div class="low">${esc(m._p)}${m.status === 'error' ? ' <button type="button" data-del="' + esc(m.id) + '">Supprimer</button>' : ''}</div>` : ''}</div>`; }).join('')
+    || '<p class="muted">Aucun mouvement.</p>';
+}
+
+/* ---------- Semis ---------- */
+function renderSemis() {
+  fill($('#sx-espece'), S.data.especes.map(e => e.Nom_commun));
+  fill($('#sx-planche'), planches());
+  fill($('#sx-resp'), S.data.responsables.map(r => r.Nom));
+  const leveeFaite = new Set(S.q.filter(x => x.kind === 'levee' && x.status !== 'error').map(x => x.semis_id));
+  const open = S.q.filter(x => x.kind === 'semis' && x.status !== 'error')
+    .map(x => ({ id: x.id, Date_Semis: x.Date, Espece: x.Espece, Quantite_Semee: x.Quantite, Planche: x.Planche, _p: 1 }))
+    .concat(S.data.semis.filter(s => s.Quantite_Levee === '').map(s => ({ ...s, id: s.ID_Semis })))
+    .filter(s => !leveeFaite.has(s.id));
+  $('#levees').innerHTML = open.map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)} · ${esc(s.Quantite_Semee)} semés</b>
+    <span class="muted">${esc(s.Date_Semis)} · ${age(s.Date_Semis)} j</span></div>
+    <div class="muted">${esc(s.Planche)}${s._p ? ' · en attente d\'envoi' : ''}</div>
+    <div class="row" style="margin-top:8px"><input type="number" min="0" inputmode="numeric" placeholder="Plants levés" data-q="${esc(s.id)}" style="margin:0">
+    <button type="button" class="primary" style="width:auto;margin:0;padding:8px 16px" data-levee="${esc(s.id)}">Valider</button></div></div>`).join('')
+    || '<p class="muted">Aucun semis en attente de levée.</p>';
+  $('#semis-list').innerHTML = S.data.semis.slice(0, 30).map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)}</b>
+    <span class="tag" style="--c:var(--e)">${esc(s.Quantite_Semee)} semés · ${s.Quantite_Levee === '' ? 'levée en attente' : esc(s.Quantite_Levee) + ' levés'}</span></div>
+    <div class="muted">${esc(s.Date_Semis)} · ${esc(s.Planche)}${s.Provenance_Semences ? ' · ' + esc(s.Provenance_Semences) : ''}</div></div>`).join('')
+    || '<p class="muted">Aucun semis.</p>';
+}
+async function submitSemis(ev) {
+  ev.preventDefault();
+  const btn = $('#sx-ok'); if (btn.disabled) return; btn.disabled = true;
+  try {
+    const q = parseInt($('#sx-qte').value, 10);
+    if (!(q > 0)) return toast('Quantité invalide');
+    await DB.put({ id: S.sid, kind: 'semis', Date: $('#sx-date').value, Espece: $('#sx-espece').value,
+      Provenance: $('#sx-prov').value.trim(), Quantite: q, Planche: $('#sx-planche').value, Responsable: $('#sx-resp').value,
+      Observation: $('#sx-obs').value.trim(), Source: navigator.onLine ? 'en ligne' : 'hors ligne',
+      Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
+    S.sid = crypto.randomUUID();
+    $('#sx-qte').value = ''; $('#sx-obs').value = ''; $('#sx-prov').value = '';
+    await loadQ(); toast(navigator.onLine ? 'Semis enregistré' : 'Semis enregistré hors ligne'); flash($('#sx-ok')); sync();
+  } finally { btn.disabled = false; }
+}
+async function levee(e) {
+  const id = e.target.dataset.levee; if (!id) return;
+  const q = parseInt(document.querySelector(`[data-q="${CSS.escape(id)}"]`).value, 10);
+  if (!(q >= 0)) return toast('Saisissez le nombre de plants levés');
+  e.target.disabled = true;
+  await DB.put({ id: crypto.randomUUID(), kind: 'levee', semis_id: id, Date: localDate(), Quantite: q,
+    Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
+  await loadQ(); toast('Levée enregistrée'); sync();
+}
+
+function countUp() {
+  const calme = matchMedia('(prefers-reduced-motion:reduce)').matches; S.kpi = S.kpi || [];
+  document.querySelectorAll('.kpi b[data-n]').forEach((el, i) => {
+    const to = +el.dataset.n, sfx = el.dataset.s || '', from = S.kpi[i] ?? 0; S.kpi[i] = to;
+    if (from === to || calme) { el.textContent = to + sfx; return; }
+    const t0 = performance.now();
+    const step = t => { const p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(from + (to - from) * e) + sfx; if (p < 1) requestAnimationFrame(step); };
+    requestAnimationFrame(step);
+  });
+}
+function flash(b) { b.classList.remove('done'); void b.offsetWidth; b.classList.add('done'); }
+function render() { renderForm(); renderSemis(); renderStock(); renderHisto(); }
+function net() { const o = navigator.onLine; const n = $('#net'); n.textContent = o ? 'En ligne' : 'Hors ligne'; n.classList.toggle('off', !o); }
+function tab(t) { document.querySelectorAll('main > section').forEach(s => { const on = s.id === 't-' + t; s.hidden = !on;
+    if (on) { s.classList.remove('enter'); void s.offsetWidth; s.classList.add('enter'); setTimeout(() => s.classList.remove('enter'), 1500); } });
+  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t)); }
+
+/* ---------- Démarrage ---------- */
+(async function init() {
+  setTimeout(() => document.documentElement.classList.remove('boot'), 1800);
+  $('#date').value = localDate(); $('#sx-date').value = localDate();
+  S.cfg = (await DB.get('cfg')) || S.cfg; S.data = (await DB.get('data')) || S.data; S.data.semis = S.data.semis || [];
+  if (API_URL) S.cfg.url = API_URL; $('#url').value = S.cfg.url; $('#last').textContent = 'Dernière actualisation : ' + ((await DB.get('last')) || 'jamais');
+  net(); await loadQ(); render();
+  tab(S.cfg.url ? 'saisie' : 'reglages');
+  document.querySelectorAll('nav button').forEach(b => b.onclick = () => tab(b.dataset.t));
+  document.querySelectorAll('#lib button').forEach(b => b.onclick = () => { S.lib = b.dataset.l; renderForm(); });
+  $('#f').onsubmit = submit; $('#fx').onsubmit = submitSemis; $('#levees').onclick = levee;
+  $('#espece').onchange = () => hint(true); $('#orig').onchange = () => hint(false);
+  $('#fs').onchange = renderStock; $('#q').oninput = renderHisto;
+  $('#sync').onclick = () => { S.q.filter(x => x.status === 'error').length && toast('Voir les erreurs dans Historique'); sync(); };
+  $('#histo').onclick = async e => { const id = e.target.dataset.del; if (id) { await DB.del(id); loadQ(); } };
+  $('#save').onclick = async () => { S.cfg = { url: API_URL || $('#url').value.trim() };
+    await DB.set('cfg', S.cfg); await refresh(); tab('saisie'); sync(); };
+  addEventListener('online', () => { net(); sync(); refresh(true); }); addEventListener('offline', net);
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').then(r => { if ('sync' in r) addEventListener('online', () => r.sync.register('sync-mvts').catch(() => {})); });
+    navigator.serviceWorker.addEventListener('message', e => e.data === 'sync' && sync());
+  }
+  refresh(true); sync();
+})();
+</script>
 </body>
 </html>
