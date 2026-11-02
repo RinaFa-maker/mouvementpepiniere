@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#1f5c3a">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<title>Pépinière</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <h1>Pépinière agroforesterie</h1>
+  <div class="status"><span id="net" class="pill">En ligne</span><button id="sync" class="pill" type="button">0 en attente</button></div>
+</header>
+
+<main>
+<section id="t-saisie">
+  <form id="f" autocomplete="off">
+    <div class="seg" id="lib">
+      <button type="button" data-l="Entrée" class="l-e">Entrée</button>
+      <button type="button" data-l="Sortie" class="l-s">Sortie</button>
+      <button type="button" data-l="Transfert" class="l-t">Transfert</button>
+      <button type="button" data-l="Mortalité" class="l-m">Mortalité</button>
+    </div>
+    <label>Date<input type="date" id="date" required></label>
+    <label>Espèce<select id="espece" required></select></label>
+    <label>Nombre de plants<input type="number" id="qte" min="1" step="1" inputmode="numeric" required></label>
+    <label id="r-orig">Planche d'origine<select id="orig"></select></label>
+    <div id="hint" class="hint" hidden></div>
+    <label id="r-dest"><span id="l-dest">Planche de destination</span><select id="dest"></select></label>
+    <label>Responsable<select id="resp" required></select></label>
+    <label>Observation<textarea id="obs" rows="2" maxlength="500"></textarea></label>
+    <button id="ok" class="primary" type="submit">Enregistrer</button>
+  </form>
+</section>
+
+<section id="t-stock" hidden>
+  <label>Espèce<select id="fs"></select></label>
+  <div id="totaux"></div>
+  <h2>Ordre de sortie (plus anciens d'abord)</h2>
+  <div class="scroll"><table id="lots"></table></div>
+</section>
+
+<section id="t-histo" hidden>
+  <label>Rechercher<input type="search" id="q" placeholder="espèce, planche, responsable…"></label>
+  <div id="histo"></div>
+</section>
+
+<section id="t-reglages" hidden>
+  <label>URL de l'application web Apps Script<input id="url" type="url" placeholder="https://script.google.com/macros/s/AKfycbyZYIiPN1NsNGfWGvM9uTmRR6zyMsBAJ8IqDVGB3Fa0bHPjrlcleJjb_iEJoq8QNezkkg/exec"></label>
+  <label>Token d'accès<input id="token" type="password"></label>
+  <button id="save" class="primary" type="button">Enregistrer et actualiser</button>
+  <p class="muted" id="last"></p>
+</section>
+</main>
+
+<nav>
+  <button data-t="saisie" class="on">Saisie</button>
+  <button data-t="stock">Stock</button>
+  <button data-t="histo">Historique</button>
+  <button data-t="reglages">Réglages</button>
+</nav>
+<div id="toast" role="status"></div>
+<script src="db.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
