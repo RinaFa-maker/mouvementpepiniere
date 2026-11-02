@@ -2,148 +2,124 @@
 <html lang="fr" class="boot">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#1f5c3a">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#14452f">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
 <title>Pépinière</title>
 <style>
-:root{--bg:#f3f6f2;--surface:#fff;--ink:#14241a;--muted:#5d6e63;--line:#e0e7de;--brand:#14452f;--brand2:#237a4f;--accent:#237a4f;
---e:#237a4f;--s:#2563a8;--t:#b7791f;--m:#b4412f;--amber:#fdf2cf;--amber-ink:#4a3700;--shadow:0 1px 2px rgba(16,40,26,.06),0 4px 14px rgba(16,40,26,.05);--r:14px}
-@media(prefers-color-scheme:dark){:root{--bg:#0d1510;--surface:#16211a;--ink:#e8f0ea;--muted:#9aada0;--line:#26352b;--brand:#0f3323;--brand2:#1b5c3d;--accent:#5fc58a;
---e:#4cb97f;--s:#6aa5e8;--t:#e0a840;--m:#e07a66;--amber:#3a3010;--amber-ink:#f5dc8a;--shadow:0 1px 2px rgba(0,0,0,.4)}}
+:root{--bg:#f3f6f2;--sf:#fff;--ink:#14241a;--mu:#5d6e63;--ln:#e0e7de;--b1:#14452f;--b2:#237a4f;--ac:#237a4f;--e:#237a4f;--s:#2563a8;--t:#b7791f;--m:#b4412f;--am:#fdf2cf;--ai:#4a3700;--sh:0 1px 2px rgba(16,40,26,.06),0 4px 14px rgba(16,40,26,.05);--r:14px}
+@media(prefers-color-scheme:dark){:root{--bg:#0d1510;--sf:#16211a;--ink:#e8f0ea;--mu:#9aada0;--ln:#26352b;--b1:#0f3323;--b2:#1b5c3d;--ac:#5fc58a;--e:#4cb97f;--s:#6aa5e8;--t:#e0a840;--m:#e07a66;--am:#3a3010;--ai:#f5dc8a;--sh:0 1px 2px rgba(0,0,0,.4)}}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif}
-header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;
- padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+[hidden]{display:none!important}
+header{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:10px;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;background:linear-gradient(135deg,var(--b1),var(--b2));color:#fff;box-shadow:0 2px 10px rgba(0,0,0,.18)}
 .brand{display:flex;align-items:center;gap:10px;min-width:0}
 .logo{flex:none;width:38px;height:38px;border-radius:11px;background:#ffffff22;display:grid;place-items:center}
-.logo svg{width:22px;height:22px;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-h1{font-size:1.05rem;line-height:1.15;margin:0;font-weight:700;letter-spacing:.2px}
-.sub{font-size:.72rem;opacity:.8}
-.status{display:flex;gap:6px;flex:none}
+.logo svg{width:22px;height:22px}
+svg.i{fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.logo svg{stroke:#fff}
+h1{font-size:1.05rem;line-height:1.15;margin:0;font-weight:700}.sub{font-size:.72rem;opacity:.8}
+.st{display:flex;gap:6px;flex:none}
 .pill{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:99px;padding:5px 11px;font:600 .75rem inherit;background:#ffffff26;color:#fff;white-space:nowrap}
-#net::before{content:"";width:8px;height:8px;border-radius:50%;background:#7ee2a4}
-.pill.off::before{background:#ffb4a8}.pill.off{background:#8f2b1d}.pill.pend{background:#b7791f}
+#net::before{content:"";width:8px;height:8px;border-radius:50%;background:#7ee2a4;animation:pulse 2.2s infinite}
+.pill.off{background:#8f2b1d}.pill.off::before{background:#ffb4a8!important;animation:none!important}.pill.pend{background:#b7791f}
+.banner{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:9px 16px;font-size:.85rem;background:var(--am);color:var(--ai)}
+.banner button{border:0;border-radius:8px;padding:6px 12px;font:700 .8rem inherit;background:var(--ai);color:var(--am)}
 main{max-width:680px;margin:auto;padding:18px 16px 110px}
 .page{font-size:1.35rem;margin:2px 0 14px;font-weight:700}
-h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:24px 0 8px;font-weight:700}
-.panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:6px 16px 18px;box-shadow:var(--shadow)}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--mu);margin:24px 0 8px;font-weight:700}
+.panel{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:6px 16px 18px;box-shadow:var(--sh)}
 .panel h2{margin-top:14px}
-label{display:block;font-weight:600;font-size:.82rem;color:var(--muted);margin:14px 0}
-input,select,textarea{display:block;width:100%;margin-top:6px;min-height:48px;padding:11px 13px;font:inherit;font-size:1rem;color:var(--ink);
- background:var(--bg);border:1.5px solid var(--line);border-radius:11px;transition:border-color .15s,box-shadow .15s}
-textarea{min-height:76px;resize:vertical}
-input:focus,select:focus,textarea:focus{outline:0;border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent);background:var(--surface)}
-button:focus-visible{outline:3px solid color-mix(in srgb,var(--accent) 55%,transparent);outline-offset:2px}
+label{display:block;font-weight:600;font-size:.82rem;color:var(--mu);margin:14px 0}
+input,select,textarea{display:block;width:100%;margin-top:6px;min-height:48px;padding:11px 13px;font:inherit;font-size:1rem;color:var(--ink);background:var(--bg);border:1.5px solid var(--ln);border-radius:11px;transition:border-color .15s,box-shadow .15s}
+textarea{min-height:72px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--ac);box-shadow:0 0 0 4px color-mix(in srgb,var(--ac) 22%,transparent);background:var(--sf)}
+button:focus-visible{outline:3px solid color-mix(in srgb,var(--ac) 55%,transparent);outline-offset:2px}
 .seg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 4px}
-.seg button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;font:700 1rem inherit;color:var(--c);
- background:var(--surface);border:2px solid color-mix(in srgb,var(--c) 40%,var(--line));border-radius:12px;transition:background .15s,color .15s}
+.seg button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:54px;font:700 1rem inherit;color:var(--c);background:var(--sf);border:2px solid color-mix(in srgb,var(--c) 40%,var(--ln));border-radius:12px}
 .seg button::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--c)}
 .seg button.on{background:var(--c);border-color:var(--c);color:#fff;box-shadow:0 4px 12px color-mix(in srgb,var(--c) 40%,transparent)}
 .seg button.on::before{background:#fff}
 .l-e{--c:var(--e)}.l-s{--c:var(--s)}.l-t{--c:var(--t)}.l-m{--c:var(--m)}
-.primary{width:100%;min-height:52px;margin-top:10px;font:700 1.02rem inherit;color:#fff;border:0;border-radius:12px;
- background:linear-gradient(135deg,var(--brand2),var(--brand));box-shadow:0 4px 12px rgba(20,69,47,.3);transition:transform .1s}
-.primary:active{transform:scale(.985)}.primary:disabled{opacity:.5}
-.hint{margin:6px 0;padding:10px 13px;border-radius:10px;font-size:.88rem;background:var(--amber);color:var(--amber-ink);border-left:4px solid var(--t)}
-.muted{color:var(--muted);font-size:.85rem}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 0}
+.chips button{border:1.5px solid var(--ln);background:var(--sf);color:var(--ink);border-radius:99px;padding:5px 13px;font:600 .8rem inherit}
+.chips button.on{background:var(--ac);border-color:var(--ac);color:#fff}
+.primary,.ghost{width:100%;min-height:50px;margin-top:10px;font:700 1rem inherit;border-radius:12px}
+.primary{color:#fff;border:0;background:linear-gradient(135deg,var(--b2),var(--b1));box-shadow:0 4px 12px rgba(20,69,47,.3)}
+.ghost{color:var(--ink);background:var(--sf);border:1.5px solid var(--ln)}
+.primary:disabled{opacity:.5}.primary.done{animation:done .6s ease}
+.hint{margin:6px 0;padding:10px 13px;border-radius:10px;font-size:.88rem;background:var(--am);color:var(--ai);border-left:4px solid var(--t)}
+.mu{color:var(--mu);font-size:.85rem}
 .kpis{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}
-.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;box-shadow:var(--shadow)}
-.kpi span{display:block;font-size:.74rem;color:var(--muted);font-weight:600}
-.kpi b{font-size:1.6rem;line-height:1.2}.kpi.alert b{color:var(--m)}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;margin:9px 0;box-shadow:var(--shadow)}
-.card .row,.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.kpi{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:12px 14px;box-shadow:var(--sh)}
+.kpi span{display:block;font-size:.74rem;color:var(--mu);font-weight:600}
+.kpi b{font-size:1.6rem;line-height:1.2;font-variant-numeric:tabular-nums}.kpi.al b{color:var(--m)}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:var(--r);padding:12px 14px;margin:9px 0;box-shadow:var(--sh)}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
 .low{color:var(--m);font-weight:700;font-size:.85rem}
 .tag{display:inline-block;padding:3px 10px;border-radius:99px;font-size:.75rem;font-weight:700;color:#fff;background:var(--c,#777);white-space:nowrap}
-.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);background:var(--surface)}
+.bar{height:7px;border-radius:7px;background:var(--bg);margin-top:8px;overflow:hidden}.bar i{display:block;height:100%;background:var(--e);border-radius:7px;transition:width .6s}.bar i.lo{background:var(--m)}
+.scroll{overflow-x:auto;border:1px solid var(--ln);border-radius:var(--r);box-shadow:var(--sh);background:var(--sf)}
 table{width:100%;border-collapse:collapse;font-size:.9rem}
-th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:var(--bg)}
-th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line)}
-tr:last-child td{border-bottom:0}
-tr.first td{background:var(--amber);color:var(--amber-ink);font-weight:700}
-tr.first td:first-child{box-shadow:inset 4px 0 var(--t)}
-nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;background:var(--surface);border-top:1px solid var(--line);
- box-shadow:0 -4px 16px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px 8px;border:0;background:none;color:var(--muted);font:600 .7rem inherit;position:relative}
-nav svg{width:23px;height:23px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-nav button.on{color:var(--accent)}
-nav button.on::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--accent)}
-#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translate(-50%,8px);z-index:9;background:#16211a;color:#fff;
- padding:11px 18px;border-radius:12px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;box-shadow:0 6px 20px rgba(0,0,0,.3)}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);background:var(--bg)}
+th,td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--ln)}tr:last-child td{border-bottom:0}
+tr.first td{background:var(--am);color:var(--ai);font-weight:700}tr.first td:first-child{box-shadow:inset 4px 0 var(--t)}
+#chart svg{width:100%;height:auto;display:block}
+.lg{display:flex;gap:14px;font-size:.75rem;color:var(--mu);margin-top:4px}.lg i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:5px}
+.mini{border:1.5px solid var(--ln);background:var(--sf);color:var(--ink);border-radius:8px;padding:5px 11px;font:600 .78rem inherit}
+nav{position:fixed;left:0;right:0;bottom:0;z-index:5;display:flex;background:var(--sf);border-top:1px solid var(--ln);box-shadow:0 -4px 16px rgba(0,0,0,.06);padding-bottom:env(safe-area-inset-bottom)}
+nav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 2px 8px;border:0;background:none;color:var(--mu);font:600 .7rem inherit;position:relative}
+nav svg{width:23px;height:23px}nav button.on{color:var(--ac)}
+nav button.on::before{content:"";position:absolute;top:0;left:30%;right:30%;height:3px;border-radius:0 0 3px 3px;background:var(--ac)}
+#toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom));transform:translate(-50%,8px);z-index:9;background:#16211a;color:#fff;padding:11px 18px;border-radius:12px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;max-width:90%;box-shadow:0 6px 20px rgba(0,0,0,.3)}
 #toast.show{opacity:1;transform:translate(-50%,0)}
-@media(prefers-reduced-motion:reduce){*{transition:none!important}}
-
-/* ===== Animations et finitions ===== */
+#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 38%,var(--b2),var(--b1) 72%);color:#fff;pointer-events:none;animation:sout .5s ease 1.1s forwards}
+.sl{width:96px;height:96px;border-radius:28px;background:#ffffff1f;display:grid;place-items:center;box-shadow:0 10px 40px rgba(0,0,0,.25);animation:pop .6s cubic-bezier(.2,1.3,.4,1) both}
+.sl svg{width:56px;height:56px;stroke:#fff;stroke-width:1.6}.sl path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .9s ease .3s forwards}
+.sp-t{font-size:1.7rem;font-weight:800;margin-top:18px;animation:rise .6s ease .55s both}.sp-s{font-size:.85rem;color:#ffffffcc;animation:rise .6s ease .7s both}
+.sp-b{width:120px;height:3px;border-radius:3px;background:#ffffff33;margin-top:26px;overflow:hidden}.sp-b i{display:block;height:100%;width:0;background:#fff;animation:fb 1s ease .1s forwards}
 @keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 @keyframes rise{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
 @keyframes pop{from{opacity:0;transform:scale(.55)}to{opacity:1;transform:none}}
-@keyframes draw{to{stroke-dashoffset:0}}
-@keyframes fillbar{to{width:100%}}
-@keyframes splashOut{to{opacity:0;visibility:hidden;transform:scale(1.05)}}
-@keyframes headerIn{from{transform:translateY(-100%)}to{transform:none}}
-@keyframes navIn{from{transform:translateY(100%)}to{transform:none}}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes fb{to{width:100%}}
+@keyframes sout{to{opacity:0;visibility:hidden;transform:scale(1.05)}}
+@keyframes hin{from{transform:translateY(-100%)}to{transform:none}}@keyframes nin{from{transform:translateY(100%)}to{transform:none}}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(126,226,164,.7)}50%{box-shadow:0 0 0 6px rgba(126,226,164,0)}}
 @keyframes done{0%{transform:scale(1)}40%{transform:scale(1.03);box-shadow:0 0 0 9px rgba(35,122,79,.28)}100%{transform:scale(1)}}
-
-#splash{position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;
- background:radial-gradient(circle at 50% 38%,var(--brand2),var(--brand) 72%);color:#fff;pointer-events:none;
- animation:splashOut .5s ease 1.15s forwards}
-.sp-logo{width:96px;height:96px;border-radius:28px;background:#ffffff1f;display:grid;place-items:center;
- box-shadow:0 10px 40px rgba(0,0,0,.25);animation:pop .6s cubic-bezier(.2,1.3,.4,1) both}
-.sp-logo svg{width:56px;height:56px;fill:none;stroke:#fff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
-.sp-logo path{stroke-dasharray:60;stroke-dashoffset:60;animation:draw .9s ease .3s forwards}
-.sp-title{font-size:1.7rem;font-weight:800;letter-spacing:.5px;margin-top:18px;animation:rise .6s ease .55s both}
-.sp-sub{font-size:.85rem;color:#ffffffcc;animation:rise .6s ease .7s both}
-.sp-bar{width:120px;height:3px;border-radius:3px;background:#ffffff33;margin-top:26px;overflow:hidden}
-.sp-bar i{display:block;height:100%;width:0;background:#fff;animation:fillbar 1.05s ease .1s forwards}
-
-header{animation:headerIn .6s cubic-bezier(.2,.8,.2,1) .95s both}
-nav{animation:navIn .6s cubic-bezier(.2,.8,.2,1) .95s both}
-#net::before{animation:pulse 2.2s infinite}.pill.off::before{animation:none}
-
-main>section:not([hidden]){animation:pageIn .4s cubic-bezier(.2,.8,.2,1) both}
-html.boot main>section:not([hidden]){animation-delay:.95s}
+header{animation:hin .6s cubic-bezier(.2,.8,.2,1) .9s both}nav{animation:nin .6s cubic-bezier(.2,.8,.2,1) .9s both}
+main>section:not([hidden]){animation:pageIn .4s cubic-bezier(.2,.8,.2,1) both}html.boot main>section:not([hidden]){animation-delay:.9s}
 .enter .card,.enter .kpi,.enter .scroll,.enter .panel{animation:rise .5s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*55ms)}
-html.boot .enter .card,html.boot .enter .kpi,html.boot .enter .scroll,html.boot .enter .panel{animation-delay:calc(.95s + var(--i,0)*55ms)}
-.card:nth-child(1),.kpi:nth-child(1){--i:1}.card:nth-child(2),.kpi:nth-child(2){--i:2}.card:nth-child(3),.kpi:nth-child(3){--i:3}
-.card:nth-child(4),.kpi:nth-child(4){--i:4}.card:nth-child(5){--i:5}.card:nth-child(6){--i:6}.card:nth-child(7){--i:7}.card:nth-child(n+8){--i:8}
-
-.kpi b{font-variant-numeric:tabular-nums}
-.card,.kpi,.seg button,.primary,nav button{transition:transform .18s ease,box-shadow .18s ease,background .18s ease,color .18s ease}
+html.boot .enter .card,html.boot .enter .kpi,html.boot .enter .scroll,html.boot .enter .panel{animation-delay:calc(.9s + var(--i,0)*55ms)}
+.card:nth-child(1),.kpi:nth-child(1){--i:1}.card:nth-child(2),.kpi:nth-child(2){--i:2}.card:nth-child(3),.kpi:nth-child(3){--i:3}.card:nth-child(4),.kpi:nth-child(4){--i:4}.card:nth-child(n+5){--i:5}
+.card,.kpi,.seg button,.primary,nav button{transition:transform .18s,box-shadow .18s,background .18s,color .18s}
 @media(hover:hover){.card:hover,.kpi:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(16,40,26,.12)}}
-.seg button:active,nav button:active{transform:scale(.96)}
-.primary.done{animation:done .6s ease}
-header::after{content:"";position:absolute;inset:0;pointer-events:none;
- background:radial-gradient(120px 60px at 85% 0,rgba(255,255,255,.18),transparent 70%)}
+.seg button:active,nav button:active,.primary:active{transform:scale(.96)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-delay:0s!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div id="splash" aria-hidden="true">
-  <div class="sp-logo"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div>
-  <div class="sp-title">Pépinière</div><div class="sp-sub">Suivi agroforesterie</div>
-  <div class="sp-bar"><i></i></div>
-</div>
+<div id="splash" aria-hidden="true"><div class="sl"><svg class="i" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div><div class="sp-t">Pépinière</div><div class="sp-s">Suivi agroforesterie</div><div class="sp-b"><i></i></div></div>
+
 <header>
-  <div class="brand"><div class="logo"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div>
-  <div><h1>Pépinière</h1><div class="sub">Suivi agroforesterie</div></div></div>
-  <div class="status"><span id="net" class="pill">En ligne</span><button id="sync" class="pill" type="button">0 en attente</button></div>
+  <div class="brand"><div class="logo"><svg class="i" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg></div><div><h1>Pépinière</h1><div class="sub">Suivi agroforesterie</div></div></div>
+  <div class="st"><span id="net" class="pill">En ligne</span><button id="sync" class="pill" type="button" aria-label="Synchroniser">0 en attente</button></div>
 </header>
+<div id="upd" class="banner" hidden><span>Nouvelle version disponible</span><button id="updb" type="button">Actualiser</button></div>
 
 <main>
 <section id="t-saisie">
   <h2 class="page">Nouveau mouvement</h2>
   <form id="f" class="panel" autocomplete="off">
-    <div class="seg" id="lib">
-      <button type="button" data-l="Entrée" class="l-e">Entrée</button>
-      <button type="button" data-l="Sortie" class="l-s">Sortie</button>
-      <button type="button" data-l="Transfert" class="l-t">Transfert</button>
-      <button type="button" data-l="Mortalité" class="l-m">Mortalité</button>
+    <div class="seg" id="lib" role="group" aria-label="Type de mouvement">
+      <button type="button" data-l="Entrée" class="l-e">Entrée</button><button type="button" data-l="Sortie" class="l-s">Sortie</button>
+      <button type="button" data-l="Transfert" class="l-t">Transfert</button><button type="button" data-l="Mortalité" class="l-m">Mortalité</button>
     </div>
     <label>Date<input type="date" id="date" required></label>
     <label>Espèce<select id="espece" required></select></label>
     <label>Nombre de plants<input type="number" id="qte" min="1" step="1" inputmode="numeric" required></label>
+    <div class="chips" data-for="qte"><button type="button" data-add="1">+1</button><button type="button" data-add="5">+5</button><button type="button" data-add="10">+10</button><button type="button" data-add="50">+50</button><button type="button" data-add="0">Effacer</button></div>
     <label id="r-orig">Planche d'origine<select id="orig"></select></label>
     <div id="hint" class="hint" hidden></div>
     <label id="r-dest"><span id="l-dest">Planche de destination</span><select id="dest"></select></label>
@@ -154,19 +130,21 @@ header::after{content:"";position:absolute;inset:0;pointer-events:none;
 </section>
 
 <section id="t-semis" hidden>
+  <h2 class="page">Semis</h2>
   <form id="fx" class="panel" autocomplete="off">
     <h2>Nouveau semis</h2>
     <label>Date du semis<input type="date" id="sx-date" required></label>
     <label>Espèce<select id="sx-espece" required></select></label>
     <label>Provenance des semences<input id="sx-prov" maxlength="100" placeholder="ex. récolte locale, fournisseur…"></label>
     <label>Quantité semée<input type="number" id="sx-qte" min="1" step="1" inputmode="numeric" required></label>
+    <div class="chips" data-for="sx-qte"><button type="button" data-add="10">+10</button><button type="button" data-add="50">+50</button><button type="button" data-add="100">+100</button><button type="button" data-add="0">Effacer</button></div>
     <label>Planche<select id="sx-planche" required></select></label>
     <label>Responsable<select id="sx-resp" required></select></label>
     <label>Observation<textarea id="sx-obs" rows="2" maxlength="500"></textarea></label>
     <button id="sx-ok" class="primary" type="submit">Enregistrer le semis</button>
   </form>
-  <h2>Semis en attente de levée</h2>
-  <p class="muted">Les plants entrent au stock une fois la levée enregistrée. Leur âge compte depuis la date du semis.</p>
+  <h2>En attente de levée</h2>
+  <p class="mu">Les plants entrent au stock à la levée. Leur âge compte depuis la date du semis.</p>
   <div id="levees"></div>
   <h2>Derniers semis</h2>
   <div id="semis-list"></div>
@@ -175,6 +153,9 @@ header::after{content:"";position:absolute;inset:0;pointer-events:none;
 <section id="t-stock" hidden>
   <h2 class="page">Stock</h2>
   <div class="kpis" id="kpi"></div>
+  <p class="mu" id="pendnote"></p>
+  <h2>Entrées et sorties · 14 derniers jours</h2>
+  <div class="card"><div id="chart"></div><div class="lg"><span><i style="background:var(--e)"></i>Entrées</span><span><i style="background:var(--m)"></i>Sorties + mortalité</span></div></div>
   <label>Espèce<select id="fs"></select></label>
   <div id="totaux"></div>
   <h2>Ordre de sortie · plus anciens d'abord</h2>
@@ -183,123 +164,172 @@ header::after{content:"";position:absolute;inset:0;pointer-events:none;
 
 <section id="t-histo" hidden>
   <h2 class="page">Historique</h2>
+  <div class="chips" id="chips"></div>
   <label>Rechercher<input type="search" id="q" placeholder="espèce, planche, responsable…"></label>
+  <div class="row"><span class="mu" id="cnt"></span><button class="mini" id="csv" type="button">Exporter CSV</button></div>
   <div id="histo"></div>
 </section>
 
 <section id="t-reglages" hidden>
   <h2 class="page">Réglages</h2>
-  <label>URL de l'application web Apps Script (inutile si déjà écrite dans index.html)<input id="url" type="url" placeholder="https://script.google.com/macros/s/…/exec"></label>
-  <button id="save" class="primary" type="button">Enregistrer et actualiser</button>
-  <p class="muted" id="last"></p>
+  <div class="panel">
+    <label>URL de l'application web Apps Script<input id="url" type="url" placeholder="Valeur par défaut du fichier"></label>
+    <label>Token d'accès<input id="token" type="password" placeholder="Valeur par défaut du fichier"></label>
+    <button id="save" class="primary" type="button">Enregistrer et actualiser</button>
+    <button id="reset" class="ghost" type="button">Revenir aux valeurs par défaut</button>
+    <button id="install" class="ghost" type="button" hidden>Installer l'application</button>
+  </div>
+  <p class="mu" id="last"></p>
 </section>
 </main>
 
-<nav>
-  <button data-t="saisie" class="on"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span>Saisie</span></button>
-  <button data-t="semis"><svg viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg><span>Semis</span></button>
-  <button data-t="stock"><svg viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg><span>Stock</span></button>
-  <button data-t="histo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Historique</span></button>
-  <button data-t="reglages"><svg viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>Réglages</span></button>
+<nav aria-label="Navigation">
+  <button data-t="saisie" class="on"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg><span>Saisie</span></button>
+  <button data-t="semis"><svg class="i" viewBox="0 0 24 24"><path d="M12 21v-9"/><path d="M12 12c0-4 3-6 7-6 0 4-3 6-7 6z"/><path d="M12 14c0-3-2-5-6-5 0 3 2 5 6 5z"/></svg><span>Semis</span></button>
+  <button data-t="stock"><svg class="i" viewBox="0 0 24 24"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/><path d="M12 11v10"/></svg><span>Stock</span></button>
+  <button data-t="histo"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span>Historique</span></button>
+  <button data-t="reglages"><svg class="i" viewBox="0 0 24 24"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg><span>Réglages</span></button>
 </nav>
 <div id="toast" role="status"></div>
-<script>
-/* ====== CONFIGURATION : collez ici l'URL de l'application web Apps Script (qui finit par /exec) ====== */
-const API_URL = '';
 
-/* IndexedDB : kv (réglages, listes en cache) + queue (saisies en attente) */
+<script>
+/* ====== CONFIGURATION (modifiable aussi dans l'onglet Réglages) ====== */
+const API_URL = 'https://script.google.com/macros/s/AKfycbyZYIiPN1NsNGfWGvM9uTmRR6zyMsBAJ8IqDVGB3Fa0bHPjrlcleJjb_iEJoq8QNezkkg/exec';
+const API_TOKEN = 'c88ff0456f6d454b';
+
+/* ====== IndexedDB : kv (réglages, cache) + queue (saisies en attente) ====== */
 const DB = (() => {
-  const open = () => new Promise((ok, ko) => {
-    const r = indexedDB.open('pepiniere', 1);
+  const open = () => new Promise((ok, ko) => { const r = indexedDB.open('pepiniere', 1);
     r.onupgradeneeded = () => { r.result.createObjectStore('kv'); r.result.createObjectStore('queue', { keyPath: 'id' }); };
-    r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error);
-  });
-  const tx = async (st, mode, fn) => {
-    const d = await open();
-    return new Promise((ok, ko) => {
-      const t = d.transaction(st, mode), rq = fn(t.objectStore(st));
-      t.oncomplete = () => ok(rq && rq.result); t.onerror = () => ko(t.error);
-    });
-  };
-  return {
-    get: k => tx('kv', 'readonly', s => s.get(k)),
-    set: (k, v) => tx('kv', 'readwrite', s => s.put(v, k)),
-    all: () => tx('queue', 'readonly', s => s.getAll()),
-    put: o => tx('queue', 'readwrite', s => s.put(o)),
-    del: id => tx('queue', 'readwrite', s => s.delete(id))
-  };
+    r.onsuccess = () => ok(r.result); r.onerror = () => ko(r.error); });
+  const tx = async (st, mode, fn) => { const d = await open();
+    return new Promise((ok, ko) => { const t = d.transaction(st, mode), rq = fn(t.objectStore(st));
+      t.oncomplete = () => ok(rq && rq.result); t.onerror = () => ko(t.error); }); };
+  return { get: k => tx('kv', 'readonly', s => s.get(k)), set: (k, v) => tx('kv', 'readwrite', s => s.put(v, k)),
+    all: () => tx('queue', 'readonly', s => s.getAll()), put: o => tx('queue', 'readwrite', s => s.put(o)),
+    del: id => tx('queue', 'readwrite', s => s.delete(id)) };
 })();
 
-const $ = s => document.querySelector(s);
+/* ====== Outils ====== */
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
 const esc = s => String(s ?? '').replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const COL = { 'Entrée': 'var(--e)', 'Sortie': 'var(--s)', 'Transfert': 'var(--t)', 'Mortalité': 'var(--m)' };
-const S = { cfg: { url: API_URL }, data: { especes: [], sites: [], responsables: [], stock: [], mouvements: [], semis: [] },
-  q: [], lib: 'Entrée', id: crypto.randomUUID(), sid: crypto.randomUUID(), busy: false };
-
-const localDate = () => new Date(Date.now() - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
+const uid = () => crypto.randomUUID();
+const COL = { 'Entrée': 'var(--e)', 'Sortie': 'var(--s)', 'Transfert': 'var(--t)', 'Mortalité': 'var(--m)', 'Semis': 'var(--e)', 'Levée': 'var(--e)' };
+const S = { cfg: { url: '', token: '' }, data: { especes: [], sites: [], responsables: [], stock: [], mouvements: [], semis: [] },
+  q: [], lib: 'Entrée', id: uid(), sid: uid(), busy: false, flt: 'Tous', kpi: [] };
+const U = () => S.cfg.url || API_URL, T = () => S.cfg.token || API_TOKEN;
+const localDate = (o = 0) => new Date(Date.now() - o * 864e5 - new Date().getTimezoneOffset() * 6e4).toISOString().slice(0, 10);
 const age = d => Math.floor((Date.now() - new Date(d + 'T00:00:00')) / 864e5);
-const planches = () => S.data.sites.filter(s => String(s.Type || '').trim().toLowerCase().indexOf('planche') === 0).map(s => s.Nom);
-const externes = () => S.data.sites.filter(s => String(s.Type || '').trim().toLowerCase().indexOf('externe') === 0 && s.Nom !== 'Extérieur').map(s => s.Nom);
-const fill = (el, list, keep) => { const v = keep ?? el.value;
-  el.innerHTML = list.map(x => `<option>${esc(x)}</option>`).join(''); if (list.includes(v)) el.value = v; };
-function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); setTimeout(() => t.classList.remove('show'), 3200); }
+const isT = (s, t) => String(s.Type || '').trim().toLowerCase().indexOf(t) === 0;
+const planches = () => S.data.sites.filter(s => isT(s, 'planche')).map(s => s.Nom);
+const externes = () => S.data.sites.filter(s => isT(s, 'externe') && s.Nom !== 'Extérieur').map(s => s.Nom);
+const fill = (el, list, keep) => { const v = keep ?? el.value; el.innerHTML = list.map(x => `<option>${esc(x)}</option>`).join(''); if (list.includes(v)) el.value = v; };
+const vib = () => navigator.vibrate && navigator.vibrate(25);
+let tt; function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('show'); clearTimeout(tt); tt = setTimeout(() => t.classList.remove('show'), 3200); }
+function flash(b) { b.classList.remove('done'); void b.offsetWidth; b.classList.add('done'); }
+const lotsOf = esp => S.data.stock.filter(l => l.Espece === esp).sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree));
+const semInfo = id => S.data.semis.find(s => s.ID_Semis === id) || S.q.find(x => x.id === id && x.kind === 'semis');
+const semEsp = id => (semInfo(id) || {}).Espece || 'Semis';
+const fmtDet = m => `${m.Site_Origine}${m.Site_Destination ? ' → ' + m.Site_Destination : ''} · ${m.Responsable}${m.Observation ? ' · ' + m.Observation : ''}`;
 
-/* ---------- Saisie ---------- */
+/* Stock local = stock confirmé + saisies en attente (fiable hors ligne) */
+function stockLocal() {
+  const m = new Map(), add = (e, s, q) => m.set(e + '||' + s, (m.get(e + '||' + s) || 0) + q);
+  S.data.stock.forEach(l => add(l.Espece, l.Site, l.Quantite));
+  S.q.filter(x => x.status !== 'error').forEach(x => {
+    if (x.kind === 'levee') { const s = semInfo(x.semis_id); if (s) add(s.Espece, s.Planche, x.Quantite); }
+    else if (!x.kind) { if (x.Libelle === 'Entrée') add(x.Espece, x.Site_Destination, x.Quantite);
+      else { add(x.Espece, x.Site_Origine, -x.Quantite); if (x.Libelle === 'Transfert') add(x.Espece, x.Site_Destination, x.Quantite); } }
+  });
+  return m;
+}
+const dispo = (e, s) => stockLocal().get(e + '||' + s) || 0;
+
+/* ====== Saisie ====== */
 function renderForm() {
-  document.querySelectorAll('#lib button').forEach(b => b.classList.toggle('on', b.dataset.l === S.lib));
+  $$('#lib button').forEach(b => b.classList.toggle('on', b.dataset.l === S.lib));
   const L = S.lib;
-  $('#r-orig').hidden = L === 'Entrée';
-  $('#r-dest').hidden = L === 'Mortalité';
+  $('#r-orig').hidden = L === 'Entrée'; $('#r-dest').hidden = L === 'Mortalité';
   $('#l-dest').textContent = L === 'Sortie' ? 'Destination' : 'Planche de destination';
   fill($('#espece'), S.data.especes.map(e => e.Nom_commun));
-  fill($('#orig'), planches());
-  fill($('#dest'), L === 'Sortie' ? externes() : planches());
-  fill($('#resp'), S.data.responsables.map(r => r.Nom));
+  fill($('#orig'), planches()); fill($('#dest'), L === 'Sortie' ? externes() : planches());
+  fill($('#resp'), S.data.responsables.map(r => r.Nom), S.resp);
   hint();
 }
-function lotsOf(esp) { return S.data.stock.filter(l => l.Espece === esp).sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree)); }
 function hint(auto) {
   const h = $('#hint'), esp = $('#espece').value;
-  if (S.lib === 'Entrée') { h.hidden = false; h.textContent = 'Entrée hors semis (achat, don…). Les semis se saisissent dans l\'onglet Semis.'; return; }
+  if (S.lib === 'Entrée') { h.hidden = false; h.innerHTML = 'Entrée hors semis (achat, don…). Pour un semis, utilisez l\'onglet <b>Semis</b>.'; return; }
   if (!esp) { h.hidden = true; return; }
-  const lots = lotsOf(esp);
-  h.hidden = false;
+  const lots = lotsOf(esp); h.hidden = false;
   if (!lots.length) { h.textContent = 'Aucun stock connu pour cette espèce.'; return; }
-  const o = lots[0];
-  if (auto) $('#orig').value = o.Site;                 // propose la planche la plus ancienne
-  const here = lots.filter(l => l.Site === $('#orig').value).reduce((s, l) => s + l.Quantite, 0);
-  h.innerHTML = `Stock sur cette planche : <b>${here}</b><br>À sortir en premier : <b>${esc(o.Site)}</b> (${o.Quantite} plants, entrés le ${o.Date_Entree}, ${age(o.Date_Entree)} j)`;
+  const o = lots[0]; if (auto) $('#orig').value = o.Site;
+  h.innerHTML = `Stock sur cette planche : <b>${dispo(esp, $('#orig').value)}</b><br>À sortir en premier : <b>${esc(o.Site)}</b> (${o.Quantite} plants, entrés le ${o.Date_Entree}, ${age(o.Date_Entree)} j)`;
 }
 async function submit(ev) {
-  ev.preventDefault();
-  const btn = $('#ok'); if (btn.disabled) return; btn.disabled = true;
+  ev.preventDefault(); const btn = $('#ok'); if (btn.disabled) return; btn.disabled = true;
   try {
-    const L = S.lib, q = parseInt($('#qte').value, 10);
+    const L = S.lib, q = parseInt($('#qte').value, 10), esp = $('#espece').value, o = $('#orig').value, d = $('#dest').value;
     if (!(q > 0)) return toast('Quantité invalide');
-    if (L === 'Transfert' && $('#orig').value === $('#dest').value) return toast('Origine et destination identiques');
-    const item = { id: S.id, Date: $('#date').value, Libelle: L, Espece: $('#espece').value, Quantite: q,
-      Site_Origine: L === 'Entrée' ? 'Extérieur' : $('#orig').value,
-      Site_Destination: L === 'Mortalité' ? '' : $('#dest').value,
+    if (L === 'Transfert' && o === d) return toast('Origine et destination identiques');
+    if (L !== 'Entrée') { const dp = dispo(esp, o); if (q > dp) return toast(`Stock insuffisant sur cette planche (${dp})`); }
+    await DB.put({ id: S.id, Date: $('#date').value, Libelle: L, Espece: esp, Quantite: q,
+      Site_Origine: L === 'Entrée' ? 'Extérieur' : o, Site_Destination: L === 'Mortalité' ? '' : d,
       Responsable: $('#resp').value, Observation: $('#obs').value.trim(),
-      Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' };
-    await DB.put(item);                                   // même ID => impossible de créer 2 fois la même saisie
-    S.id = crypto.randomUUID();
-    $('#qte').value = ''; $('#obs').value = '';
-    await loadQ(); toast(navigator.onLine ? 'Enregistré' : 'Enregistré hors ligne'); flash($('#ok'));
-    sync();
+      Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
+    S.id = uid(); $('#qte').value = ''; $('#obs').value = '';
+    await loadQ(); vib(); flash(btn); toast(navigator.onLine ? 'Enregistré' : 'Enregistré hors ligne'); sync();
   } finally { btn.disabled = false; }
 }
 
-/* ---------- Synchronisation ---------- */
-async function loadQ() { S.q = await DB.all(); const n = S.q.filter(x => x.status !== 'error').length, e = S.q.length - n;
-  const b = $('#sync'); b.textContent = n + ' en attente' + (e ? ` · ${e} erreur` : ''); b.classList.toggle('pend', n > 0 || e > 0); renderHisto(); renderSemis(); }
+/* ====== Semis ====== */
+function renderSemis() {
+  fill($('#sx-espece'), S.data.especes.map(e => e.Nom_commun)); fill($('#sx-planche'), planches());
+  fill($('#sx-resp'), S.data.responsables.map(r => r.Nom), S.resp);
+  const fait = new Set(S.q.filter(x => x.kind === 'levee' && x.status !== 'error').map(x => x.semis_id));
+  const open = S.q.filter(x => x.kind === 'semis' && x.status !== 'error').map(x => ({ id: x.id, Date_Semis: x.Date, Espece: x.Espece, Quantite_Semee: x.Quantite, Planche: x.Planche, _p: 1 }))
+    .concat(S.data.semis.filter(s => s.Quantite_Levee === '').map(s => ({ ...s, id: s.ID_Semis }))).filter(s => !fait.has(s.id));
+  $('#levees').innerHTML = open.map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)} · ${esc(s.Quantite_Semee)} semés</b><span class="mu">${esc(s.Date_Semis)} · ${age(s.Date_Semis)} j</span></div>
+    <div class="mu">${esc(s.Planche)}${s._p ? ' · en attente d\'envoi' : ''}</div>
+    <div class="row" style="margin-top:8px"><input type="number" min="0" inputmode="numeric" placeholder="Plants levés" data-q="${esc(s.id)}" style="margin:0">
+    <button type="button" class="primary" style="width:auto;margin:0;padding:8px 16px;min-height:44px" data-levee="${esc(s.id)}">Valider</button></div></div>`).join('')
+    || '<p class="mu">Aucun semis en attente de levée.</p>';
+  $('#semis-list').innerHTML = S.data.semis.slice(0, 30).map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)}</b>
+    <span class="tag" style="--c:var(--e)">${esc(s.Quantite_Semee)} semés · ${s.Quantite_Levee === '' ? 'levée en attente' : esc(s.Quantite_Levee) + ' levés'}</span></div>
+    <div class="mu">${esc(s.Date_Semis)} · ${esc(s.Planche)}${s.Provenance_Semences ? ' · ' + esc(s.Provenance_Semences) : ''}</div></div>`).join('') || '<p class="mu">Aucun semis.</p>';
+}
+async function submitSemis(ev) {
+  ev.preventDefault(); const btn = $('#sx-ok'); if (btn.disabled) return; btn.disabled = true;
+  try {
+    const q = parseInt($('#sx-qte').value, 10); if (!(q > 0)) return toast('Quantité invalide');
+    await DB.put({ id: S.sid, kind: 'semis', Date: $('#sx-date').value, Espece: $('#sx-espece').value, Provenance: $('#sx-prov').value.trim(),
+      Quantite: q, Planche: $('#sx-planche').value, Responsable: $('#sx-resp').value, Observation: $('#sx-obs').value.trim(),
+      Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
+    S.sid = uid(); $('#sx-qte').value = ''; $('#sx-obs').value = ''; $('#sx-prov').value = '';
+    await loadQ(); vib(); flash(btn); toast(navigator.onLine ? 'Semis enregistré' : 'Semis enregistré hors ligne'); sync();
+  } finally { btn.disabled = false; }
+}
+async function levee(e) {
+  const id = e.target.dataset.levee; if (!id) return;
+  const q = parseInt(document.querySelector(`[data-q="${CSS.escape(id)}"]`).value, 10);
+  if (!(q >= 0)) return toast('Saisissez le nombre de plants levés');
+  e.target.disabled = true;
+  await DB.put({ id: uid(), kind: 'levee', semis_id: id, Date: localDate(), Quantite: q, Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
+  await loadQ(); vib(); toast('Levée enregistrée'); sync();
+}
+
+/* ====== Synchronisation ====== */
+async function loadQ() {
+  S.q = await DB.all(); const n = S.q.filter(x => x.status !== 'error').length, e = S.q.length - n, b = $('#sync');
+  b.textContent = n + ' en attente' + (e ? ` · ${e} erreur` : ''); b.classList.toggle('pend', n > 0 || e > 0);
+  renderHisto(); renderSemis(); hint(); renderStock();
+}
 async function sync() {
-  if (S.busy || !navigator.onLine || !S.cfg.url) return;
+  if (S.busy || !navigator.onLine || !U()) return;
   const items = S.q.filter(x => x.status !== 'error'); if (!items.length) return;
   S.busy = true;
   try {
-    const r = await fetch(S.cfg.url, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-      body: JSON.stringify({ action: 'add', items: items.map(({ status, msg, ...o }) => o) }) });
+    const r = await fetch(U(), { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ token: T(), action: 'add', items: items.map(({ status, msg, ...o }) => o) }) });
     const j = await r.json(); if (j.error) throw new Error(j.error);
     let bad = 0;
     for (const res of j.results) {
@@ -311,141 +341,132 @@ async function sync() {
   finally { S.busy = false; await loadQ(); }
 }
 async function refresh(quiet) {
-  if (!S.cfg.url || !navigator.onLine) return;
+  if (!U() || !navigator.onLine) return;
   try {
-    const r = await fetch(`${S.cfg.url}?action=bootstrap`);
+    const r = await fetch(`${U()}?action=bootstrap&token=${encodeURIComponent(T())}`);
     const j = await r.json(); if (j.error) throw new Error(j.error);
-    S.data = j; await DB.set('data', j); await DB.set('last', new Date().toLocaleString('fr-FR'));
+    j.semis = j.semis || []; S.data = j; await DB.set('data', j);
+    S.last = new Date().toLocaleString('fr-FR'); await DB.set('last', S.last); $('#last').textContent = 'Dernière actualisation : ' + S.last;
     render(); if (!quiet) toast('Listes actualisées');
   } catch (e) { toast('Actualisation impossible : ' + e.message); }
 }
 
-/* ---------- Affichages ---------- */
-function renderStock() {
-  fill($('#fs'), [''].concat(S.data.especes.map(e => e.Nom_commun)));
-  const f = $('#fs').value, lots = S.data.stock.filter(l => !f || l.Espece === f)
-    .sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree));
-  const tot = {}; S.data.stock.forEach(l => tot[l.Espece] = (tot[l.Espece] || 0) + l.Quantite);
-  const total = Object.values(tot).reduce((a, b) => a + b, 0);
-  const bas = S.data.especes.filter(e => e.Seuil_Alerte && (tot[e.Nom_commun] || 0) <= e.Seuil_Alerte).length;
-  const vieux = S.data.stock.length ? Math.max(...S.data.stock.map(l => age(l.Date_Entree))) : 0;
-  $('#kpi').innerHTML = `<div class="kpi"><span>Plants en stock</span><b data-n="${total}">${total}</b></div>
-    <div class="kpi"><span>Espèces en stock</span><b data-n="${Object.keys(tot).length}">${Object.keys(tot).length}</b></div>
-    <div class="kpi ${bas ? 'alert' : ''}"><span>Espèces à stock bas</span><b data-n="${bas}">${bas}</b></div>
-    <div class="kpi"><span>Lot le plus ancien</span><b data-n="${vieux}" data-s=" j">${vieux} j</b></div>`;
-  countUp();
-  $('#totaux').innerHTML = S.data.especes.filter(e => !f || e.Nom_commun === f).map(e => {
-    const n = tot[e.Nom_commun] || 0, low = e.Seuil_Alerte && n <= e.Seuil_Alerte;
-    return `<div class="card row"><span>${esc(e.Nom_commun)}</span><span class="${low ? 'low' : ''}">${n}${low ? ' · stock bas' : ''}</span></div>`;
-  }).join('');
-  const seen = new Set();
-  $('#lots').innerHTML = '<tr><th>Espèce</th><th>Planche</th><th>Plants</th><th>Entrée</th><th>Âge</th></tr>' +
-    (lots.map(l => { const first = !seen.has(l.Espece); seen.add(l.Espece);
-      return `<tr class="${first ? 'first' : ''}"><td>${esc(l.Espece)}</td><td>${esc(l.Site)}</td><td>${l.Quantite}</td><td>${l.Date_Entree}</td><td>${age(l.Date_Entree)} j</td></tr>`; }).join('')
-      || '<tr><td colspan="5">Aucun stock. Enregistrez une entrée.</td></tr>');
-}
-function renderHisto() {
-  const q = ($('#q')?.value || '').toLowerCase();
-  const pend = S.q.map(x => ({ ...x, _p: x.status === 'error' ? 'refusée : ' + x.msg : 'en attente' }));
-  const view = m => {
-    if (m.kind === 'semis') return { t: 'Semis', c: 'var(--e)', n: m.Quantite, a: m.Espece, b: `${m.Planche} · ${m.Responsable}` };
-    if (m.kind === 'levee') { const s = [...S.q, ...S.data.semis.map(x => ({ id: x.ID_Semis, Espece: x.Espece }))].find(x => x.id === m.semis_id);
-      return { t: 'Levée', c: 'var(--e)', n: m.Quantite, a: s ? s.Espece : 'Semis', b: 'levée de semis' }; }
-    return { t: m.Libelle, c: COL[m.Libelle], n: m.Quantite, a: m.Espece,
-      b: `${m.Site_Origine}${m.Site_Destination ? ' → ' + m.Site_Destination : ''} · ${m.Responsable}${m.Observation ? ' · ' + m.Observation : ''}` };
-  };
-  const all = pend.concat(S.data.mouvements).filter(m => !q || JSON.stringify(m).toLowerCase().includes(q)).slice(0, 150);
-  $('#histo').innerHTML = all.map(m => { const v = view(m);
-    return `<div class="card" style="border-left:4px solid ${v.c}"><div class="row"><b>${esc(m.Date)} · ${esc(v.a)}</b><span class="tag" style="--c:${v.c}">${esc(v.t)} ${esc(v.n)}</span></div>
-    <div class="muted">${esc(v.b)}</div>
-    ${m._p ? `<div class="low">${esc(m._p)}${m.status === 'error' ? ' <button type="button" data-del="' + esc(m.id) + '">Supprimer</button>' : ''}</div>` : ''}</div>`; }).join('')
-    || '<p class="muted">Aucun mouvement.</p>';
-}
-
-/* ---------- Semis ---------- */
-function renderSemis() {
-  fill($('#sx-espece'), S.data.especes.map(e => e.Nom_commun));
-  fill($('#sx-planche'), planches());
-  fill($('#sx-resp'), S.data.responsables.map(r => r.Nom));
-  const leveeFaite = new Set(S.q.filter(x => x.kind === 'levee' && x.status !== 'error').map(x => x.semis_id));
-  const open = S.q.filter(x => x.kind === 'semis' && x.status !== 'error')
-    .map(x => ({ id: x.id, Date_Semis: x.Date, Espece: x.Espece, Quantite_Semee: x.Quantite, Planche: x.Planche, _p: 1 }))
-    .concat(S.data.semis.filter(s => s.Quantite_Levee === '').map(s => ({ ...s, id: s.ID_Semis })))
-    .filter(s => !leveeFaite.has(s.id));
-  $('#levees').innerHTML = open.map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)} · ${esc(s.Quantite_Semee)} semés</b>
-    <span class="muted">${esc(s.Date_Semis)} · ${age(s.Date_Semis)} j</span></div>
-    <div class="muted">${esc(s.Planche)}${s._p ? ' · en attente d\'envoi' : ''}</div>
-    <div class="row" style="margin-top:8px"><input type="number" min="0" inputmode="numeric" placeholder="Plants levés" data-q="${esc(s.id)}" style="margin:0">
-    <button type="button" class="primary" style="width:auto;margin:0;padding:8px 16px" data-levee="${esc(s.id)}">Valider</button></div></div>`).join('')
-    || '<p class="muted">Aucun semis en attente de levée.</p>';
-  $('#semis-list').innerHTML = S.data.semis.slice(0, 30).map(s => `<div class="card"><div class="row"><b>${esc(s.Espece)}</b>
-    <span class="tag" style="--c:var(--e)">${esc(s.Quantite_Semee)} semés · ${s.Quantite_Levee === '' ? 'levée en attente' : esc(s.Quantite_Levee) + ' levés'}</span></div>
-    <div class="muted">${esc(s.Date_Semis)} · ${esc(s.Planche)}${s.Provenance_Semences ? ' · ' + esc(s.Provenance_Semences) : ''}</div></div>`).join('')
-    || '<p class="muted">Aucun semis.</p>';
-}
-async function submitSemis(ev) {
-  ev.preventDefault();
-  const btn = $('#sx-ok'); if (btn.disabled) return; btn.disabled = true;
-  try {
-    const q = parseInt($('#sx-qte').value, 10);
-    if (!(q > 0)) return toast('Quantité invalide');
-    await DB.put({ id: S.sid, kind: 'semis', Date: $('#sx-date').value, Espece: $('#sx-espece').value,
-      Provenance: $('#sx-prov').value.trim(), Quantite: q, Planche: $('#sx-planche').value, Responsable: $('#sx-resp').value,
-      Observation: $('#sx-obs').value.trim(), Source: navigator.onLine ? 'en ligne' : 'hors ligne',
-      Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
-    S.sid = crypto.randomUUID();
-    $('#sx-qte').value = ''; $('#sx-obs').value = ''; $('#sx-prov').value = '';
-    await loadQ(); toast(navigator.onLine ? 'Semis enregistré' : 'Semis enregistré hors ligne'); flash($('#sx-ok')); sync();
-  } finally { btn.disabled = false; }
-}
-async function levee(e) {
-  const id = e.target.dataset.levee; if (!id) return;
-  const q = parseInt(document.querySelector(`[data-q="${CSS.escape(id)}"]`).value, 10);
-  if (!(q >= 0)) return toast('Saisissez le nombre de plants levés');
-  e.target.disabled = true;
-  await DB.put({ id: crypto.randomUUID(), kind: 'levee', semis_id: id, Date: localDate(), Quantite: q,
-    Source: navigator.onLine ? 'en ligne' : 'hors ligne', Horodatage_Saisie: new Date().toISOString(), status: 'pending' });
-  await loadQ(); toast('Levée enregistrée'); sync();
-}
-
+/* ====== Stock ====== */
 function countUp() {
-  const calme = matchMedia('(prefers-reduced-motion:reduce)').matches; S.kpi = S.kpi || [];
-  document.querySelectorAll('.kpi b[data-n]').forEach((el, i) => {
+  const calme = matchMedia('(prefers-reduced-motion:reduce)').matches;
+  $$('.kpi b[data-n]').forEach((el, i) => {
     const to = +el.dataset.n, sfx = el.dataset.s || '', from = S.kpi[i] ?? 0; S.kpi[i] = to;
     if (from === to || calme) { el.textContent = to + sfx; return; }
-    const t0 = performance.now();
-    const step = t => { const p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
+    const t0 = performance.now(), step = t => { const p = Math.min(1, (t - t0) / 700), e = 1 - Math.pow(1 - p, 3);
       el.textContent = Math.round(from + (to - from) * e) + sfx; if (p < 1) requestAnimationFrame(step); };
     requestAnimationFrame(step);
   });
 }
-function flash(b) { b.classList.remove('done'); void b.offsetWidth; b.classList.add('done'); }
-function render() { renderForm(); renderSemis(); renderStock(); renderHisto(); }
-function net() { const o = navigator.onLine; const n = $('#net'); n.textContent = o ? 'En ligne' : 'Hors ligne'; n.classList.toggle('off', !o); }
-function tab(t) { document.querySelectorAll('main > section').forEach(s => { const on = s.id === 't-' + t; s.hidden = !on;
-    if (on) { s.classList.remove('enter'); void s.offsetWidth; s.classList.add('enter'); setTimeout(() => s.classList.remove('enter'), 1500); } });
-  document.querySelectorAll('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t)); }
+function chart() {
+  const days = [...Array(14)].map((_, i) => localDate(13 - i)), a = days.map(() => ({ e: 0, s: 0 }));
+  S.data.mouvements.forEach(m => { const i = days.indexOf(m.Date); if (i < 0) return; const q = +m.Quantite;
+    if (m.Libelle === 'Entrée') a[i].e += q; else if (m.Libelle === 'Sortie' || m.Libelle === 'Mortalité') a[i].s += q; });
+  const mx = Math.max(1, ...a.map(x => Math.max(x.e, x.s)));
+  $('#chart').innerHTML = '<svg viewBox="0 0 280 96" role="img" aria-label="Entrées et sorties sur 14 jours">' + a.map((x, i) => {
+    const he = x.e / mx * 70, hs = x.s / mx * 70;
+    return `<rect x="${i * 20 + 2}" y="${78 - he}" width="7" height="${he}" rx="2" fill="var(--e)"/><rect x="${i * 20 + 10}" y="${78 - hs}" width="7" height="${hs}" rx="2" fill="var(--m)"/><text x="${i * 20 + 10}" y="92" text-anchor="middle" font-size="7" fill="var(--mu)">${days[i].slice(8)}</text>`; }).join('') + '</svg>';
+}
+function renderStock() {
+  fill($('#fs'), [''].concat(S.data.especes.map(e => e.Nom_commun)));
+  const f = $('#fs').value, lots = S.data.stock.filter(l => !f || l.Espece === f).sort((a, b) => a.Date_Entree.localeCompare(b.Date_Entree));
+  const tot = {}; S.data.stock.forEach(l => tot[l.Espece] = (tot[l.Espece] || 0) + l.Quantite);
+  const total = Object.values(tot).reduce((a, b) => a + b, 0);
+  const bas = S.data.especes.filter(e => +e.Seuil_Alerte && (tot[e.Nom_commun] || 0) <= +e.Seuil_Alerte).length;
+  const vieux = S.data.stock.length ? Math.max(...S.data.stock.map(l => age(l.Date_Entree))) : 0;
+  const mort = S.data.mouvements.filter(m => m.Libelle === 'Mortalité' && m.Date >= localDate(30)).reduce((s, m) => s + +m.Quantite, 0);
+  $('#kpi').innerHTML = `<div class="kpi"><span>Plants en stock</span><b data-n="${total}">${total}</b></div>
+    <div class="kpi"><span>Lot le plus ancien</span><b data-n="${vieux}" data-s=" j">${vieux} j</b></div>
+    <div class="kpi ${bas ? 'al' : ''}"><span>Espèces à stock bas</span><b data-n="${bas}">${bas}</b></div>
+    <div class="kpi"><span>Mortalité · 30 jours</span><b data-n="${mort}">${mort}</b></div>`;
+  countUp(); chart();
+  const np = S.q.filter(x => x.status !== 'error').length;
+  $('#pendnote').textContent = np ? `Stock confirmé : ${np} saisie(s) en attente d'envoi ne sont pas encore comptées.` : '';
+  $('#totaux').innerHTML = S.data.especes.filter(e => !f || e.Nom_commun === f).map(e => {
+    const n = tot[e.Nom_commun] || 0, sl = +e.Seuil_Alerte || 0, low = sl && n <= sl, w = Math.min(100, n / Math.max(sl * 2, n, 1) * 100);
+    return `<div class="card"><div class="row"><b>${esc(e.Nom_commun)}</b><span class="${low ? 'low' : ''}">${n}${low ? ' · stock bas' : ''}</span></div><div class="bar"><i class="${low ? 'lo' : ''}" style="width:${w}%"></i></div></div>`; }).join('');
+  const seen = new Set();
+  $('#lots').innerHTML = '<tr><th>Espèce</th><th>Planche</th><th>Plants</th><th>Entrée</th><th>Âge</th></tr>' + (lots.map(l => { const first = !seen.has(l.Espece); seen.add(l.Espece);
+    return `<tr class="${first ? 'first' : ''}"><td>${esc(l.Espece)}</td><td>${esc(l.Site)}</td><td>${l.Quantite}</td><td>${l.Date_Entree}</td><td>${age(l.Date_Entree)} j</td></tr>`; }).join('')
+    || '<tr><td colspan="5">Aucun stock. Enregistrez une entrée ou une levée.</td></tr>');
+}
 
-/* ---------- Démarrage ---------- */
+/* ====== Historique ====== */
+function allItems() {
+  const out = [];
+  S.q.forEach(x => out.push(x.kind === 'semis' ? { id: x.id, d: x.Date, t: 'Semis', esp: x.Espece, q: x.Quantite, det: `${x.Planche} · ${x.Responsable}`, st: x.status, msg: x.msg, own: 1 }
+    : x.kind === 'levee' ? { id: x.id, d: x.Date, t: 'Levée', esp: semEsp(x.semis_id), q: x.Quantite, det: 'Levée de semis', st: x.status, msg: x.msg, own: 1 }
+    : { id: x.id, d: x.Date, t: x.Libelle, esp: x.Espece, q: x.Quantite, det: fmtDet(x), st: x.status, msg: x.msg, own: 1 }));
+  S.data.mouvements.forEach(m => out.push({ id: m.ID_Mouvement, d: m.Date, t: m.Libelle, esp: m.Espece, q: m.Quantite, det: fmtDet(m) }));
+  S.data.semis.forEach(s => out.push({ id: s.ID_Semis, d: s.Date_Semis, t: 'Semis', esp: s.Espece, q: s.Quantite_Semee, det: `${s.Planche}${s.Quantite_Levee === '' ? ' · levée en attente' : ' · ' + s.Quantite_Levee + ' levés'}` }));
+  return out.sort((a, b) => (b.own ? 1 : 0) - (a.own ? 1 : 0) || String(b.d).localeCompare(String(a.d)));
+}
+let shown = [];
+function renderHisto() {
+  $('#chips').innerHTML = ['Tous', 'Entrée', 'Sortie', 'Transfert', 'Mortalité', 'Semis'].map(c => `<button type="button" data-f="${c}" class="${S.flt === c ? 'on' : ''}">${c}</button>`).join('');
+  const q = ($('#q').value || '').toLowerCase();
+  shown = allItems().filter(m => (S.flt === 'Tous' || m.t === S.flt || (S.flt === 'Semis' && m.t === 'Levée')) && (!q || JSON.stringify(m).toLowerCase().includes(q))).slice(0, 200);
+  $('#cnt').textContent = shown.length + ' ligne(s)';
+  $('#histo').innerHTML = shown.map(m => `<div class="card" style="border-left:4px solid ${COL[m.t] || '#777'}"><div class="row"><b>${esc(m.d)} · ${esc(m.esp)}</b>
+    <span class="tag" style="--c:${COL[m.t] || '#777'}">${esc(m.t)} ${esc(m.q)}</span></div><div class="mu">${esc(m.det)}</div>
+    ${m.own ? `<div class="low">${m.st === 'error' ? 'refusée : ' + esc(m.msg) + ` <button class="mini" data-retry="${esc(m.id)}">Réessayer</button> <button class="mini" data-del="${esc(m.id)}">Supprimer</button>` : 'en attente d\'envoi'}</div>` : ''}</div>`).join('')
+    || '<p class="mu">Aucun résultat.</p>';
+}
+function exportCsv() {
+  const cell = v => '"' + String(v ?? '').replace(/"/g, '""') + '"';
+  const rows = [['Date', 'Type', 'Espece', 'Quantite', 'Detail']].concat(shown.map(m => [m.d, m.t, m.esp, m.q, m.det]));
+  const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['\ufeff' + rows.map(r => r.map(cell).join(';')).join('\n')], { type: 'text/csv' }));
+  a.download = 'pepiniere_' + localDate() + '.csv'; a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+
+/* ====== Navigation, état ====== */
+function render() { renderForm(); renderSemis(); renderStock(); renderHisto(); }
+function net() { const o = navigator.onLine, n = $('#net'); n.textContent = o ? 'En ligne' : 'Hors ligne'; n.classList.toggle('off', !o); }
+function tab(t) {
+  $$('main > section').forEach(s => { const on = s.id === 't-' + t; s.hidden = !on;
+    if (on) { s.classList.remove('enter'); void s.offsetWidth; s.classList.add('enter'); setTimeout(() => s.classList.remove('enter'), 1500); } });
+  $$('nav button').forEach(b => b.classList.toggle('on', b.dataset.t === t)); scrollTo(0, 0);
+}
+let deferred;
+addEventListener('beforeinstallprompt', e => { e.preventDefault(); deferred = e; $('#install').hidden = false; });
+
 (async function init() {
   setTimeout(() => document.documentElement.classList.remove('boot'), 1800);
-  $('#date').value = localDate(); $('#sx-date').value = localDate();
   S.cfg = (await DB.get('cfg')) || S.cfg; S.data = (await DB.get('data')) || S.data; S.data.semis = S.data.semis || [];
-  if (API_URL) S.cfg.url = API_URL; $('#url').value = S.cfg.url; $('#last').textContent = 'Dernière actualisation : ' + ((await DB.get('last')) || 'jamais');
-  net(); await loadQ(); render();
-  tab(S.cfg.url ? 'saisie' : 'reglages');
-  document.querySelectorAll('nav button').forEach(b => b.onclick = () => tab(b.dataset.t));
-  document.querySelectorAll('#lib button').forEach(b => b.onclick = () => { S.lib = b.dataset.l; renderForm(); });
+  S.resp = await DB.get('resp'); S.last = await DB.get('last');
+  $('#date').value = $('#sx-date').value = localDate();
+  $('#url').value = S.cfg.url || ''; $('#token').value = S.cfg.token || ''; $('#last').textContent = 'Dernière actualisation : ' + (S.last || 'jamais');
+  net(); await loadQ(); render(); tab('saisie');
+
+  $$('nav button').forEach(b => b.onclick = () => tab(b.dataset.t));
+  $$('#lib button').forEach(b => b.onclick = () => { S.lib = b.dataset.l; renderForm(); });
   $('#f').onsubmit = submit; $('#fx').onsubmit = submitSemis; $('#levees').onclick = levee;
   $('#espece').onchange = () => hint(true); $('#orig').onchange = () => hint(false);
-  $('#fs').onchange = renderStock; $('#q').oninput = renderHisto;
-  $('#sync').onclick = () => { S.q.filter(x => x.status === 'error').length && toast('Voir les erreurs dans Historique'); sync(); };
-  $('#histo').onclick = async e => { const id = e.target.dataset.del; if (id) { await DB.del(id); loadQ(); } };
-  $('#save').onclick = async () => { S.cfg = { url: API_URL || $('#url').value.trim() };
-    await DB.set('cfg', S.cfg); await refresh(); tab('saisie'); sync(); };
+  $('#resp').onchange = $('#sx-resp').onchange = e => { S.resp = e.target.value; DB.set('resp', S.resp); };
+  $('#fs').onchange = renderStock; $('#q').oninput = renderHisto; $('#csv').onclick = exportCsv;
+  $('#chips').onclick = e => { const f = e.target.dataset.f; if (f) { S.flt = f; renderHisto(); } };
+  document.addEventListener('click', e => { const b = e.target.closest('[data-add]'); if (!b) return;
+    const i = $('#' + b.parentElement.dataset.for); i.value = b.dataset.add === '0' ? '' : (+i.value || 0) + +b.dataset.add; });
+  $('#histo').onclick = async e => { const d = e.target.dataset;
+    if (d.del) { await DB.del(d.del); loadQ(); }
+    if (d.retry) { const it = S.q.find(x => x.id === d.retry); if (it) { it.status = 'pending'; delete it.msg; await DB.put(it); await loadQ(); sync(); } } };
+  $('#sync').onclick = async () => { for (const x of S.q.filter(x => x.status === 'error')) { x.status = 'pending'; delete x.msg; await DB.put(x); } await loadQ(); sync(); refresh(true); };
+  $('#save').onclick = async () => { S.cfg = { url: $('#url').value.trim(), token: $('#token').value.trim() }; await DB.set('cfg', S.cfg); await refresh(); tab('saisie'); sync(); };
+  $('#reset').onclick = async () => { S.cfg = { url: '', token: '' }; await DB.set('cfg', S.cfg); $('#url').value = $('#token').value = ''; toast('Valeurs par défaut rétablies'); refresh(); };
+  $('#install').onclick = async () => { if (deferred) { deferred.prompt(); await deferred.userChoice; deferred = null; $('#install').hidden = true; } };
+  $('#updb').onclick = () => location.reload();
   addEventListener('online', () => { net(); sync(); refresh(true); }); addEventListener('offline', net);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) { refresh(true); sync(); } });
+  setInterval(() => { sync(); }, 45000);
+
   if ('serviceWorker' in navigator) {
+    const had = !!navigator.serviceWorker.controller;
     navigator.serviceWorker.register('sw.js').then(r => { if ('sync' in r) addEventListener('online', () => r.sync.register('sync-mvts').catch(() => {})); });
+    navigator.serviceWorker.addEventListener('controllerchange', () => { if (had) $('#upd').hidden = false; });
     navigator.serviceWorker.addEventListener('message', e => e.data === 'sync' && sync());
   }
   refresh(true); sync();
